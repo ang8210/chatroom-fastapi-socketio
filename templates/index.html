@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Chat Room Flask</title>
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <!-- Socket.IO 的使用 -->
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            // Socket.IO Start connect
+            var socket = io.connect('ws://localhost:8000', { path: '/ws/socket.io' });
+
+
+            // Socket.IO send message
+            $("#send").click(function (e) {
+                // Send message
+                user = $('#userName').val()
+                msg = $('#message').val()
+                socket.emit('send', user + ":" + msg)
+                // Clear input field
+                $('#message').val('')
+            });
+
+            // Socket.IO get message
+            socket.on('get', function (data) {
+                $('#chat_content').append('<p>' + data + '</p>');
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <h1>Chat Room</h1>
+    <h2>Your ID: <input type="text" id="userName" name="userName" /></h2>
+    <form>
+        <input type="text" id="message" name="message" />
+        <input type="button" id="send" value="Send" />
+    </form>
+    <hr />
+    <div id='chat_content'></div>
+</body>
+
+</html>
