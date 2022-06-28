@@ -47,5 +47,6 @@ $ uvicorn main:app --reload
 ##  References
 
 * [FastAPI-WebSockets](https://fastapi.tiangolo.com/advanced/websockets/)
+* [fastapi-socketio](https://github.com/pyropy/fastapi-socketio)
 * [Apache Kafka producer and consumer with FastAPI and aiokafka](https://iwpnd.pw/articles/2020-03/apache-kafka-fastapi-geostream)
 
